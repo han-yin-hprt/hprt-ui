@@ -1,8 +1,0 @@
-# .npmignore
-
-node_modules/
-tests/
-*.md
-*.log
-*.yaml
-example
