@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/hprt-ui/',
   title: 'hprt-ui',
   description: '汉印ui库',
   themeConfig: {
@@ -27,4 +28,3 @@ export default defineConfig({
     socialLinks: [{ icon: 'github', link: 'https://github.com/vuejs/vitepress' }],
   },
 })
-
