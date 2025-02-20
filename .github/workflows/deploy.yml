@@ -32,10 +32,10 @@ jobs:
           cache: 'pnpm' # 使用 pnpm 作为缓存
 
       - name: 📦 安装依赖
-        run: pnpm install
+        run: pnpm install --recursive 
 
       - name: 🔧 构建 VitePress
-        run: pnpm -F docs run docs:build
+        run: cd docs && pnpm run docs:build
 
       - name: 🚀 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
