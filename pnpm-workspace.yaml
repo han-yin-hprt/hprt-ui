@@ -3,3 +3,4 @@ packages:
   # 指定工作空间中的包路径
   - 'packages/**'
   - 'docs'
+  - 'example'
