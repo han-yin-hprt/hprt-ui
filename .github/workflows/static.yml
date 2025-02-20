@@ -1,0 +1,45 @@
+name: Deploy VitePress to GitHub Pages
+
+on:
+  push:
+    paths:
+      - 'docs/**'  # 监听 docs 目录下的文件变化
+    branches:
+      - main      # 仅监听 main 分支的 push 事件
+
+permissions:
+  contents: write  # 允许推送内容到 gh-pages 分支
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # 在 Ubuntu 环境中运行
+
+    steps:
+      - name: 🚀 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整的历史记录，避免缺少提交信息
+
+      - name: ⚡️ Set up pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: 🛠️ Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'  # 使用 Node.js LTS 版本
+          cache: 'pnpm'       # 使用 pnpm 缓存，提高效率
+
+      - name: 📦 Install dependencies
+        run: pnpm install --frozen-lockfile  # 安装依赖，确保锁定版本
+
+      - name: 🔧 Build VitePress
+        run: cd docs && pnpm run docs:build  # 进入 docs 目录并执行构建
+
+      - name: 🚀 Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4  # 使用 peaceiris/actions-gh-pages 部署
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # 使用 GitHub 提供的默认 token
+          publish_dir: ./docs/.vitepress/dist   # 发布目录
+          publish_branch: gh-pages             # 部署到 gh-pages 分支
