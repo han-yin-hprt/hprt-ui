@@ -3,12 +3,12 @@
 layout: home
 
 hero:
-  name: "hprt-ui"
-  text: "汉印ui库"
+  name: 'hprt-ui'
+  text: '汉印ui库'
   tagline: My great project tagline
   actions:
     - theme: brand
-      text: Markdown Examples
+      text: Markdown Examples111
       link: /markdown-examples
     - theme: alt
       text: API Examples
@@ -22,4 +22,3 @@ features:
   - title: Feature C
     details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
 ---
-
