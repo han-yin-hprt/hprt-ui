@@ -5,10 +5,10 @@ on:
     paths:
       - 'docs/**' # 监听 docs/ 目录下的所有文件
     branches:
-      - main  # 仅监听 main 分支的 push
+      - main # 仅监听 main 分支的 push
 
 permissions:
-  contents: write  # 允许推送到 gh-pages 分支
+  contents: write # 允许推送到 gh-pages 分支
 
 jobs:
   deploy:
@@ -18,7 +18,7 @@ jobs:
       - name: 🚀 检出仓库代码
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # 获取完整历史记录（防止错误）
+          fetch-depth: 0 # 获取完整历史记录（防止错误）
 
       - name: ⚡️ 安装 pnpm
         uses: pnpm/action-setup@v2
@@ -28,11 +28,11 @@ jobs:
       - name: 🛠️ 安装 Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18  # 可换成最新的 LTS 版本
-          cache: 'pnpm'  # 使用 pnpm 作为缓存
+          node-version: 18 # 可换成最新的 LTS 版本
+          cache: 'pnpm' # 使用 pnpm 作为缓存
 
       - name: 📦 安装依赖
-        run: pnpm install
+        run: pnpm install --filter ./docs...
 
       - name: 🔧 构建 VitePress
         run: pnpm run docs:build
@@ -42,4 +42,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs/.vitepress/dist
-          publish_branch: gh-pages  # 部署到 gh-pages 分支
+          publish_branch: gh-pages # 部署到 gh-pages 分支
